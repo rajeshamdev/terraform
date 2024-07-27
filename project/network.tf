@@ -90,6 +90,15 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http" {
   ip_protocol       = "tcp"
 }
 
+# add the rule that accepts any http traffic
+resource "aws_vpc_security_group_ingress_rule" "allow_8080" {
+  security_group_id = aws_security_group.app_security_group.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 8080
+  to_port           = 8080
+  ip_protocol       = "tcp"
+}
+
 
 # add the rule that accepts ssh connections
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
